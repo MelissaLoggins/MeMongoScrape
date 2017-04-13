@@ -18,7 +18,8 @@ var port = process.env.PORT || 3000;
 
 
 // Set up a static folder (public) for our web app
-app.use(express.static(process.cwd() + "public"));
+app.use(express.static("public"));
+// app.use(express.static(process.cwd() + "public"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

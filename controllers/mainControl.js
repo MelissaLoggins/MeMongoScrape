@@ -67,10 +67,12 @@ router.get("/scrape", function(req, res) {
 
 // Get articles from the database
 router.get("/articles", function(req, res) {
-	Article.find({}, function(error, doc) {
+	Article.find({}, function(error, data) {
 		if(error) {
 			console.log(error);
+
 		}
+    else{res.json(data)}
 	});
 });
 

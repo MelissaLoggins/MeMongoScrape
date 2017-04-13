@@ -1,6 +1,10 @@
 // Scrape articles from DB
 $("#scrapeArticles").on("click", function(){
-
+$.get("/articles")
+.then(function(data) {
+      console.log(data)
+    }
+  )
 
 });
 //Save article
