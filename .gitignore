@@ -1,3 +1,5 @@
+MONGODB_URI: mongodb://heroku_5ck0jj6v:fuhteepge7jagjptfgr8nlmsbu@ds159330.mlab.com:59330/heroku_5ck0jj6v
+
 # Logs
 logs
 *.log
