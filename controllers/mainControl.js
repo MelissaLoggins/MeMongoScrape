@@ -43,6 +43,7 @@ router.get("/scrape", function(req, res) {
       result.title = $(this).children("a").text();
       result.link = $(this).children("a").attr("href");
       console.log(result);
+
       var entry = new Article(result);
 
       entry.save(function(err, doc) {
@@ -76,7 +77,7 @@ router.get("/articles", function(req, res) {
 	});
 });
 
-// Grab article bu ObjectId
+// Grab article by ObjectId
 router.get("/articles/:id", function(req, res) {
   //Using the id passed in the id param, prepare a query that finds the matching one in the database
   Article.findOne({ "_id": req.params.id })
@@ -106,5 +107,36 @@ router.get("/saved", function(req,res){
     }
   });
 });
+
+// Create a new note or replace an existing note
+router.post("/articles/:id", function(req, res) {
+  // Create a new note and pass the req.body to the entry
+  var newNote = new Note(req.body);
+
+  // And save the new note the db
+  newNote.save(function(error, doc) {
+    // Log any errors
+    if (error) {
+      console.log(error);
+    }
+    // Otherwise
+    else {
+      // Use the article id to find and update it's note
+      Article.findOneAndUpdate({ "_id": req.params.id }, { "note": doc._id })
+      // Execute the above query
+      .exec(function(err, doc) {
+        // Log any errors
+        if (err) {
+          console.log(err);
+        }
+        else {
+          // Or send the document to the browser
+          res.send(doc);
+        }
+      })
+    }
+  });
+});
+
 
 module.exports = router;
