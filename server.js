@@ -9,8 +9,8 @@ var router = require("./controllers/mainControl.js");
 mongoose.Promise = Promise;
 
 // Require Models
-// var Note = require("./models/Note.js")
-// var Article = require("./models/Article.js")
+var Note = require("./models/Note.js")
+var Article = require("./models/Article.js")
 
 // Initialize Express
 var app = express();

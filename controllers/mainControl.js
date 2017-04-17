@@ -2,6 +2,8 @@
 var express = require("express");
 var router = express.Router();
 var Article = require("../models/Article.js");
+var Note = require("../models/Note.js")
+
 
 
 // Scraping tools
@@ -68,12 +70,30 @@ router.get("/scrape", function(req, res) {
 
 // Get articles from the database
 router.get("/articles", function(req, res) {
-	Article.find({}, function(error, data) {
+	var results = {}
+  Article.find({}, function(error, data) {
+    var error=error;
+    var data=data;
 		if(error) {
 			console.log(error);
 
-		}
-    else{res.json(data)}
+		} else {
+      console.log("Grabbed articles");
+      console.log(data)
+      // {
+// "_id": "58efb537b13ed2093712e7a8",
+// "title": "OK Google, Burger King Hijacked Your Speakers ... And Failed Pretty Quickly",
+// "link": "http://www.npr.org/sections/thetwo-way/2017/04/13/523740193/ok-google-burger-king-hijacked-your-speakers-and-failed-pretty-quickly",
+// "__v": 0
+// },
+
+      results={
+        articles: data
+      }
+
+      // res.json(results);
+      res.render("index", results)
+    }
 	});
 });
 
