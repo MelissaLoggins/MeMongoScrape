@@ -2,15 +2,15 @@
    <h1>npr-lite <small style="color:blue";>tech news</small></h1>
 </div>
 
-<button type="button" id="scrapeArticles" class="btn btn-danger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Scrape New Articles</button>
+
+<button type="button" id="scrapeArticles" class="btn btn-danger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="/articles">Scrape New Articles</button>
+
 
 <div id="articles" class="well well-lg">
  <h2>Behold your articles:</h2>
   {{#each articles}}
-  <p><a href target="_blank" ="{{link}}">{{title}}</a></p>
-  
+  <p><a target="_blank" href="{{link}}">{{title}}</a></p>
   {{/each}}
-
 </div>
 
 <div id="notes" class="well well-lg">
